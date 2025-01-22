@@ -48,9 +48,15 @@ if (!connectionString) {
 
 console.log("Seeding...");
 
+const { hostname } = new URL(connectionString);
+
+const sslConfig = ["localhost", "127.0.0.1"].includes(hostname)
+  ? false
+  : { rejectUnauthorized: false };
+
 const client = new Client({
   connectionString,
-  ssl: { rejectUnauthorized: false },
+  ssl: sslConfig,
 });
 
 try {
