@@ -1,0 +1,45 @@
+{
+  "name": "inventory-application",
+  "version": "1.0.0",
+  "main": "dist/app.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/app.ts",
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "pretty": "prettier --write . --ignore-path .gitignore",
+    "populate-db": "tsx src/db/populateDb.ts",
+    "clean": "rm - rf dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "inventory",
+    "typescript",
+    "nodejs",
+    "express"
+  ],
+  "author": "Shone Binu",
+  "license": "ISC",
+  "description": "A simple inventory management application.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shonebinu/inventory-application"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-async-handler": "^1.2.0",
+    "express-validator": "^7.2.1",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^5.2.1",
+    "@types/express": "^5.0.0",
+    "@types/pg": "^8.11.10",
+    "eslint": "^9.18.0",
+    "prettier": "^3.4.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}
