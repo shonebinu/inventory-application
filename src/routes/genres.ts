@@ -6,7 +6,9 @@ genres.get("/");
 
 genres.get("/:id");
 
-genres.get("/new");
+genres.get("/new", (req, res) => {
+  res.render("books/add-genre");
+});
 
 genres.post("/");
 

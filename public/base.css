@@ -1,0 +1,70 @@
+:root {
+  --body-width: 70vw;
+  --nav-bg: #082f49;
+  --bg: #e5e5e5;
+  --bg2: #fafafa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter";
+  margin: 0;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+header {
+  background: var(--nav-bg);
+
+  > nav {
+    padding: 1.5rem 0;
+    width: var(--body-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+
+    div:first-child {
+      h2 {
+        color: white;
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    div:last-child {
+      display: flex;
+      gap: 2.5rem;
+
+      a {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+
+        > svg {
+          width: 1.25rem;
+          aspect-ratio: 1;
+          fill: white;
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+main {
+  width: var(--body-width);
+  margin: 0 auto;
+}

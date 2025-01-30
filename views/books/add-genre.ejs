@@ -11,11 +11,28 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/base.css" />
+    <link rel="stylesheet" href="/add-forms.css" />
   </head>
   <body>
-    <%- include('partials/nav.ejs') %>
+    <%- include('../partials/nav.ejs') %>
     <main>
-      <h2>Book Archive</h2>
+      <h2>Add a Genre</h2>
+      <form action="/genre" method="POST">
+        <label>
+          <p>Name</p>
+          <input type="text" name="genre_name" />
+        </label>
+        <label>
+          <p>Description</p>
+          <textarea name="genre_description"></textarea>
+        </label>
+        <div>
+          <button type="button">
+            <a href="./">Cancel</a>
+          </button>
+          <button type="submit">Create Genre</button>
+        </div>
+      </form>
     </main>
   </body>
 </html>
