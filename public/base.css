@@ -21,8 +21,13 @@ textarea {
   font-size: 0.9rem;
 }
 
-.required {
+span.required {
   color: red;
+}
+
+p.error {
+  color: red;
+  font-size: 0.9rem;
 }
 
 header {

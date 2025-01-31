@@ -21,11 +21,13 @@ app.use("/genres", genresRouter);
 app.use("/", indexRouter);
 
 app.use((req, res) => {
+  //TODO: Setup 404 page
   res.status(404).render("404", { url: req.originalUrl });
 });
 
 const errorRequestHandler: ErrorRequestHandler = (err, req, res, next) => {
-  res.status(err.status || 500).render("error", {
+  //TODO: Implement error page. do i need error page for express validations?
+  res.status(err.status || 500).json({
     message: err.message,
   });
 };
