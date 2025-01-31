@@ -17,14 +17,24 @@
     <%- include('../partials/nav.ejs') %>
     <main>
       <h2>Add a Genre</h2>
-      <form action="/genre" method="POST">
+      <form action="./" method="POST">
         <label>
-          <p>Name</p>
-          <input type="text" name="genre_name" />
+          <p>Name <span class="required">*</span></p>
+          <input
+            type="text"
+            name="genre-name"
+            placeholder="Genre Name"
+            required
+            pattern=".*\S+.*"
+            title="This field is required"
+          />
         </label>
         <label>
           <p>Description</p>
-          <textarea name="genre_description"></textarea>
+          <textarea
+            name="genre-description"
+            placeholder="Genre Description"
+          ></textarea>
         </label>
         <div>
           <button type="button">

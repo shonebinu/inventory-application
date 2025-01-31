@@ -1,16 +1,16 @@
 import { Router } from "express";
 
+import { createGenre, getGenreForm } from "../controllers/genres.js";
+
 const genres = Router();
 
 genres.get("/");
 
 genres.get("/:id");
 
-genres.get("/new", (req, res) => {
-  res.render("books/add-genre");
-});
+genres.get("/new", getGenreForm);
 
-genres.post("/");
+genres.post("/", createGenre);
 
 genres.get("/:id/edit");
 

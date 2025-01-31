@@ -20,6 +20,11 @@ body {
         padding: 0.1rem 0.3rem;
         border-radius: 5px;
         border: 2px solid var(--bg);
+
+        &:focus {
+          outline: none;
+          border-color: var(--nav-bg);
+        }
       }
 
       input {
@@ -28,6 +33,7 @@ body {
 
       textarea {
         height: 6rem;
+        padding: 0.25rem 0.3rem;
       }
 
       > div:has(> button) {
@@ -63,7 +69,7 @@ body {
 
             &:hover {
               background: var(--bg2);
-              color: var(--nav-bg);
+              color: black;
               transition: 0.3s;
             }
           }
