@@ -1,6 +1,8 @@
 import path from "node:path";
 
+import flash from "connect-flash";
 import express, { type ErrorRequestHandler } from "express";
+import session from "express-session";
 
 import authorsRouter from "./routes/authors.js";
 import booksRouter from "./routes/books.js";
@@ -15,6 +17,20 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(import.meta.dirname, "../public")));
 app.use(express.urlencoded({ extended: true }));
 
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET!,
+    resave: false,
+    saveUninitialized: true,
+  }),
+);
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.errors = req.flash("errors");
+  next();
+});
+
 app.use("/books", booksRouter);
 app.use("/authors", authorsRouter);
 app.use("/genres", genresRouter);
@@ -22,11 +38,11 @@ app.use("/", indexRouter);
 
 app.use((req, res) => {
   //TODO: Setup 404 page
-  res.status(404).render("404", { url: req.originalUrl });
+  res.status(404).json({ url: req.originalUrl });
 });
 
 const errorRequestHandler: ErrorRequestHandler = (err, req, res, next) => {
-  //TODO: Implement error page. do i need error page for express validations?
+  //TODO: Implement error page
   res.status(err.status || 500).json({
     message: err.message,
   });

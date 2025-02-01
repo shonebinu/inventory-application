@@ -7,4 +7,9 @@ async function createGenre(genreName: string, genreDescription: string) {
   ]);
 }
 
-export default { createGenre };
+async function getGenres() {
+  const { rows } = await pool.query("SELECT name, description FROM genre");
+  return rows;
+}
+
+export default { getGenres, createGenre };

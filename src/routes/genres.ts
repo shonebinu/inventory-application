@@ -1,10 +1,14 @@
 import { Router } from "express";
 
-import { createGenre, getGenreForm } from "../controllers/genres.js";
+import {
+  createGenre,
+  displayGenres,
+  getGenreForm,
+} from "../controllers/genres.js";
 
 const genres = Router();
 
-genres.get("/");
+genres.get("/", displayGenres);
 
 genres.get("/:id");
 

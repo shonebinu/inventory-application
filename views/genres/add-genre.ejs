@@ -36,7 +36,11 @@
             placeholder="Genre Description"
           ></textarea>
         </label>
-        <p class="error"><%= locals.error %></p>
+        <% if (errors.length > 0) { %>
+          <% errors.forEach(error => { %>
+            <p class="error"><%= error %></p>
+          <% }) %>
+        <% } %>
         <div>
           <button type="button">
             <a href="./">Cancel</a>

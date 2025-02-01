@@ -11,6 +11,12 @@ const validateGenreName: RequestHandler[] = [
     .withMessage("Genre name shouldn't be empty"),
 ];
 
+const displayGenres: RequestHandler = asyncHandler(async (req, res) => {
+  const genres = await db.getGenres();
+  // TODO: Create a page
+  res.json(genres);
+});
+
 const getGenreForm: RequestHandler = (req, res) => {
   res.render("genres/add-genre");
 };
@@ -20,8 +26,11 @@ const createGenre: RequestHandler[] = [
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      res.status(400).json({ errors: errors.array() });
-      return;
+      req.flash(
+        "errors",
+        errors.array().map((err) => err.msg),
+      );
+      return res.redirect("/genres/new");
     }
 
     const genreName = req.body["genre-name"]?.trim();
@@ -29,15 +38,15 @@ const createGenre: RequestHandler[] = [
 
     try {
       await db.createGenre(genreName, genreDescription);
-      return res.redirect("");
-    } catch (e: any) {
-      if (e.code === "23505") {
-        res.redirect("./new");
-        // TODO: Show the error message
+      res.redirect("/genres");
+    } catch (e: unknown) {
+      if ((e as { code?: string })?.code === "23505") {
+        req.flash("errors", ["Genre already exists"]);
+        return res.redirect("/genres/new");
       }
       next(e);
     }
   }),
 ];
 
-export { getGenreForm, createGenre };
+export { displayGenres, getGenreForm, createGenre };
