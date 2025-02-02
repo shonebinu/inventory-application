@@ -7,24 +7,6 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    button {
-      background: var(--bg);
-      border: 2px solid var(--bg);
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      border-radius: 5px;
-
-      a {
-        color: black;
-        text-decoration: none;
-      }
-
-      &:hover {
-        border-color: var(--nav-bg);
-        transition: 0.3s;
-      }
-    }
   }
 
   table {
@@ -53,24 +35,6 @@ main {
 
     tr:last-child {
       border-bottom: none;
-    }
-
-    .view {
-      background: var(--bg);
-      border: 2px solid var(--bg);
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      border-radius: 5px;
-
-      a {
-        color: black;
-        text-decoration: none;
-      }
-
-      &:hover {
-        border-color: var(--nav-bg);
-        transition: 0.3s;
-      }
     }
   }
 }

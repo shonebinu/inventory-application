@@ -18,9 +18,7 @@
     <main>
       <div>
         <h2><%= type.charAt(0).toUpperCase() + type.slice(1) %>s</h2>
-        <button type="button">
-          <a href="/<%= type %>s/new">Add <%= type.charAt(0).toUpperCase() + type.slice(1) %></a>
-        </button>
+          <a class="a-button" href="/<%= type %>s/new">Add <%= type.charAt(0).toUpperCase() + type.slice(1) %></a>
       </div>
       <table>
         <tr>
@@ -35,7 +33,7 @@
               <td><%= name %></td>
               <td><%= type === 'author' ? bio : description %></td>
               <td><%= book_count %></td>
-              <td><button class="view"><a href="/<%= type %>s/<%= id %>">View</a></button></td>
+              <td><a class="a-button" href="/<%= type %>s/<%= id %>">View</a></td>
             </tr>
           <% }) %>
         <% } else { %>
