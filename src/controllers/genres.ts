@@ -13,8 +13,7 @@ const validateGenreName: RequestHandler[] = [
 
 const displayGenres: RequestHandler = asyncHandler(async (req, res) => {
   const genres = await db.getGenres();
-  // TODO: Create a page
-  res.json(genres);
+  res.render("genres", { genres });
 });
 
 const getGenreForm: RequestHandler = (req, res) => {

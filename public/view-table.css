@@ -1,0 +1,58 @@
+main {
+  --body-width: 60rem;
+}
+
+main {
+  div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      background: var(--bg);
+      border: 2px solid var(--bg);
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+
+      a {
+        color: black;
+        text-decoration: none;
+      }
+
+      &:hover {
+        border-color: var(--nav-bg);
+        transition: 0.3s;
+      }
+    }
+  }
+
+  table {
+    width: 100%;
+    font-size: 0.9rem;
+    border-collapse: collapse;
+
+    th {
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    th,
+    td {
+      padding: 0.8rem 1rem;
+      text-align: left;
+    }
+
+    tr {
+      border-bottom: 1px solid var(--bg);
+    }
+
+    tr:first-child {
+      background: color-mix(in srgb, var(--bg) 40%, transparent);
+    }
+
+    tr:last-child {
+      border-bottom: none;
+    }
+  }
+}

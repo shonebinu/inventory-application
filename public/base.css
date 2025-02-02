@@ -1,5 +1,5 @@
 :root {
-  --body-width: 70vw;
+  --nav-width: 70vw;
   --nav-bg: #082f49;
   --bg: #e5e5e5;
   --bg2: #fafafa;
@@ -12,6 +12,7 @@
 body {
   font-family: "Inter";
   margin: 0;
+  background: var(--bg);
 }
 
 input,
@@ -35,7 +36,7 @@ header {
 
   > nav {
     padding: 1.5rem 0;
-    width: var(--body-width);
+    width: var(--nav-width);
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -74,6 +75,11 @@ header {
 }
 
 main {
+  --body-width: var(--nav-width);
   width: var(--body-width);
   margin: 0 auto;
+  margin-top: 1rem;
+  background: var(--bg2);
+  padding: 0.1rem 2rem 1rem;
+  border-radius: 5px;
 }

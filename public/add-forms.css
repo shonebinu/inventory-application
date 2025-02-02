@@ -1,78 +1,70 @@
-body {
-  background: var(--bg);
+main {
+  --body-width: 50rem;
+}
 
-  main {
-    --body-width: 50rem;
-    margin-top: 1rem;
-    background: var(--bg2);
-    padding: 0.1rem 2rem 1rem;
+main > form {
+  label > p {
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 0.1rem 0.3rem;
     border-radius: 5px;
+    border: 2px solid var(--bg);
 
-    form {
-      label > p {
-        margin-bottom: 0.25rem;
-        font-size: 0.95rem;
-      }
+    &:focus {
+      outline: none;
+      border-color: var(--nav-bg);
+    }
+  }
 
-      input,
-      textarea {
-        width: 100%;
-        padding: 0.1rem 0.3rem;
-        border-radius: 5px;
+  input {
+    height: 2.25rem;
+  }
+
+  textarea {
+    height: 6rem;
+    padding: 0.25rem 0.3rem;
+  }
+
+  > div:has(> button) {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+
+    button {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+
+      &:first-child {
+        background: var(--bg);
         border: 2px solid var(--bg);
 
-        &:focus {
-          outline: none;
+        a {
+          color: black;
+          text-decoration: none;
+        }
+
+        &:hover {
           border-color: var(--nav-bg);
+          transition: 0.3s;
         }
       }
 
-      input {
-        height: 2.25rem;
-      }
+      &:last-child {
+        background: var(--nav-bg);
+        color: white;
+        border: 2px solid var(--nav-bg);
 
-      textarea {
-        height: 6rem;
-        padding: 0.25rem 0.3rem;
-      }
-
-      > div:has(> button) {
-        margin-top: 1rem;
-        display: flex;
-        gap: 0.5rem;
-        justify-content: flex-end;
-
-        button {
-          padding: 0.5rem 1rem;
-          cursor: pointer;
-          border-radius: 5px;
-
-          &:first-child {
-            background: var(--bg);
-            border: 2px solid var(--bg);
-
-            a {
-              color: black;
-              text-decoration: none;
-            }
-
-            &:hover {
-              border-color: var(--nav-bg);
-              transition: 0.3s;
-            }
-          }
-
-          &:last-child {
-            background: var(--nav-bg);
-            color: white;
-            border: 2px solid var(--nav-bg);
-
-            &:hover {
-              background: var(--bg2);
-              color: black;
-              transition: 0.3s;
-            }
-          }
+        &:hover {
+          background: var(--bg2);
+          color: black;
+          transition: 0.3s;
         }
       }
     }

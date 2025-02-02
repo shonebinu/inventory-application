@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Archive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/base.css" />
+    <link rel="stylesheet" href="/view-table.css" />
+  </head>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+    <main>
+      <div>
+        <h2>Genres</h2>
+        <button type="button">
+          <a href="/genres/new">Add Genre</a>
+        </button>
+      </div>
+      <table>
+        <tr>
+          <th>NAME</th>
+          <th>DESCRIPTION</th>
+          <th>BOOKS</th>
+          <th>ACTIONS</th>
+        </tr>
+        <% if (genres && genres.length > 0) { %>
+          <% genres.forEach(({ name, description, book_count }) => { %>
+            <tr>
+              <td><%= name %></td>
+              <td><%= description %></td>
+              <td><%= book_count %></td>
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr>
+            <td colspan="2">No genre exists. Create a new one by clicking on the Add Genre button.</td>
+          </tr>
+      <% } %>
+      </table>
+    </main>
+  </body>
+</html>

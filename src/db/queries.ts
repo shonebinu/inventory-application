@@ -8,7 +8,17 @@ async function createGenre(genreName: string, genreDescription: string) {
 }
 
 async function getGenres() {
-  const { rows } = await pool.query("SELECT name, description FROM genre");
+  const { rows } = await pool.query(
+    `SELECT 
+      genre.name, 
+      genre.description, 
+      COUNT(book_genre.book_id) AS book_count
+    FROM genre
+    LEFT JOIN book_genre 
+      ON genre.id = book_genre.genre_id
+    GROUP BY genre.id;
+`,
+  );
   return rows;
 }
 
