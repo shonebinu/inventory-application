@@ -1,14 +1,20 @@
 import { Router } from "express";
 
+import {
+  createAuthor,
+  displayAuthors,
+  getAuthorForm,
+} from "../controllers/authors.js";
+
 const authors = Router();
 
-authors.get("/");
+authors.get("/", displayAuthors);
 
 authors.get("/:id");
 
-authors.get("/new");
+authors.get("/new", getAuthorForm);
 
-authors.post("/");
+authors.post("/", createAuthor);
 
 authors.get("/:id/edit");
 
