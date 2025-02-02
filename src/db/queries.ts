@@ -10,6 +10,7 @@ async function createGenre(genreName: string, genreDescription: string) {
 async function getGenres() {
   const { rows } = await pool.query(
     `SELECT 
+      genre.id,
       genre.name, 
       genre.description, 
       COUNT(book_genre.book_id) AS book_count

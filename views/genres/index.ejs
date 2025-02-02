@@ -30,11 +30,12 @@
           <th>ACTIONS</th>
         </tr>
         <% if (genres && genres.length > 0) { %>
-          <% genres.forEach(({ name, description, book_count }) => { %>
+          <% genres.forEach(({ id, name, description, book_count }) => { %>
             <tr>
               <td><%= name %></td>
               <td><%= description %></td>
               <td><%= book_count %></td>
+              <td><button class="view"><a href="/genres/<%= id %>">View</a></button></td>
             </tr>
           <% }) %>
         <% } else { %>
