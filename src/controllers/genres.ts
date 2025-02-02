@@ -13,11 +13,11 @@ const validateGenreName: RequestHandler[] = [
 
 const displayGenres: RequestHandler = asyncHandler(async (req, res) => {
   const genres = await db.getGenres();
-  res.render("genres", { genres });
+  res.render("view-table-generic", { type: "genre", items: genres });
 });
 
 const getGenreForm: RequestHandler = (req, res) => {
-  res.render("genres/add-genre");
+  res.render("add-form-generic", { type: "genre" });
 };
 
 const createGenre: RequestHandler[] = [
