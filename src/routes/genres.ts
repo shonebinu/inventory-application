@@ -2,7 +2,9 @@ import { Router } from "express";
 
 import {
   createGenre,
+  deleteGenre,
   displayGenres,
+  getGenreDetails,
   getGenreForm,
 } from "../controllers/genres.js";
 
@@ -10,7 +12,7 @@ const genres = Router();
 
 genres.get("/", displayGenres);
 
-genres.get("/:id");
+genres.get("/:id(\\d+)", getGenreDetails);
 
 genres.get("/new", getGenreForm);
 
@@ -20,6 +22,6 @@ genres.get("/:id/edit");
 
 genres.put("/:id");
 
-genres.delete("/:id");
+genres.post("/:id(\\d+)/delete", deleteGenre);
 
 export default genres;

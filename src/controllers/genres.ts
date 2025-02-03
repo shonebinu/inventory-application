@@ -48,4 +48,22 @@ const createGenre: RequestHandler[] = [
   }),
 ];
 
-export { displayGenres, getGenreForm, createGenre };
+const getGenreDetails: RequestHandler = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const genreDetails = await db.getGenreDetails(Number(id));
+  res.render("get-details-generic", { genreDetails });
+});
+
+const deleteGenre: RequestHandler = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  await db.deleteGenre(Number(id));
+  res.redirect("/genres");
+});
+
+export {
+  displayGenres,
+  getGenreForm,
+  createGenre,
+  getGenreDetails,
+  deleteGenre,
+};

@@ -47,4 +47,32 @@ async function getAuthors() {
   return rows;
 }
 
-export default { getGenres, createGenre, getAuthors, createAuthor };
+async function getGenreDetails(genreId: number) {
+  const { rows: genreRows } = await pool.query(
+    `SELECT id, name, description FROM genre WHERE id = $1`,
+    [genreId],
+  );
+
+  const { rows: bookRows } = await pool.query(
+    `SELECT id, title, isbn, publication_date, description FROM book WHERE id IN (SELECT book_id FROM book_genre WHERE genre_id = $1)`,
+    [genreId],
+  );
+
+  return {
+    ...genreRows[0],
+    books: bookRows,
+  };
+}
+
+async function deleteGenre(genreId: number) {
+  await pool.query(`DELETE FROM genre WHERE id = $1`, [genreId]);
+}
+
+export default {
+  getGenres,
+  createGenre,
+  getAuthors,
+  createAuthor,
+  getGenreDetails,
+  deleteGenre,
+};

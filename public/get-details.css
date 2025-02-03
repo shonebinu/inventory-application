@@ -1,0 +1,35 @@
+main {
+  --body-width: 60rem;
+}
+
+main {
+  div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .actions {
+      display: flex;
+      gap: 0.5rem;
+
+      button {
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-radius: 5px;
+        background: var(--nav-bg);
+        color: white;
+        border: 2px solid var(--nav-bg);
+
+        &:hover {
+          background: var(--bg2);
+          color: black;
+          transition: 0.3s;
+        }
+      }
+    }
+  }
+
+  p.small-p {
+    margin-top: 0;
+  }
+}

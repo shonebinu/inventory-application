@@ -49,6 +49,11 @@ p.error {
   font-size: 0.9rem;
 }
 
+p.small-p {
+  font-size: 0.9rem;
+  color: #333;
+}
+
 header {
   background: var(--nav-bg);
 
