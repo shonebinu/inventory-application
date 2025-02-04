@@ -3,6 +3,7 @@ import asyncHandler from "express-async-handler";
 import { body, validationResult } from "express-validator";
 
 import db from "../db/queries.js";
+import { getImageUrl } from "../utils/getImageUrl.js";
 
 const validateGenreName: RequestHandler[] = [
   body("genre-name")
@@ -51,6 +52,15 @@ const createGenre: RequestHandler[] = [
 const getGenreDetails: RequestHandler = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const genreDetails = await db.getGenreDetails(Number(id));
+
+  await Promise.all(
+    genreDetails.books.map(
+      async (book: { title: string; imageUrl: string }) => {
+        book.imageUrl = (await getImageUrl(book.title)) || "/no-cover-book.jpg";
+      },
+    ),
+  );
+
   res.render("get-details-generic", { genreDetails });
 });
 

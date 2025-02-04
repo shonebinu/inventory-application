@@ -16,21 +16,39 @@
   <body>
     <%- include('partials/nav.ejs') %>
     <main>
-      <div>
-        <h2><%= genreDetails.name %></h2>
-        <div class="actions">
-          <a href="<%= genreDetails.id %>/edit" class="a-button">Edit</a>
-          <form
-            action="/genres/<%= genreDetails.id %>/delete"
-            method="post"
-            onsubmit="return confirm('Are you sure you want to delete this genre?')"
-          >
-            <button>Delete</button>
-          </form>
+      <% if (!genreDetails || !genreDetails.id) { %>
+        <p class="error-message">A genre with this ID doesn't exist.</p>
+      <% } else { %>
+        <div>
+          <h2><%= genreDetails.name %></h2>
+          <div class="actions">
+            <a href="<%= genreDetails.id %>/edit" class="a-button">Edit</a>
+            <form
+              action="/genres/<%= genreDetails.id %>/delete"
+              method="post"
+              onsubmit="return confirm('Are you sure you want to delete this genre?')"
+            >
+              <button>Delete</button>
+            </form>
+          </div>
         </div>
-      </div>
-      <p class="small-p"><%= genreDetails.description %></p>
-      <h3>Books in <%= genreDetails.name %></h3>
+        <p class="small-p"><%= genreDetails.description %></p>
+
+        <% if (genreDetails.books && genreDetails.books.length > 0) { %>
+          <h3>Books in <%= genreDetails.name %></h3>
+          <ul>
+            <% genreDetails.books.forEach(book => { %>
+              <li>
+                <a href="/books/<%= book.id %>"><%= book.title %></a>
+                <p><strong>ISBN:</strong> <%= book.isbn %></p>
+                <p><strong>Published:</strong> <%= book.publication_date %></p>
+                <p><%= book.description %></p>
+                <img src="<%= book.imageUrl %>" alt="">
+              </li>
+            <% }); %>
+          </ul>
+        <% } %>
+      <% } %>
     </main>
   </body>
 </html>
