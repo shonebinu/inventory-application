@@ -43,7 +43,7 @@
                 <p><strong>ISBN:</strong> <%= book.isbn %></p>
                 <p><strong>Published:</strong> <%= book.publication_date %></p>
                 <p><%= book.description %></p>
-                <img src="<%= book.imageUrl %>" alt="<%= book.title Cover Image %>">
+                <img src="<%= book.imageUrl %>" alt="<%= book.title + 'Cover Image' %>">
               </li>
             <% }); %>
           </ul>
