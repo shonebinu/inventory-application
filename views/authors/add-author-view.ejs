@@ -14,27 +14,27 @@
     <link rel="stylesheet" href="/add-form.css" />
   </head>
   <body>
-    <%- include('partials/nav.ejs') %>
+    <%- include('../partials/nav.ejs') %>
     <main>
-      <h2>Add <%= type === 'author' ? 'an' : 'a' %> <%= type === 'author' ? 'Author' : 'Genre' %></h2>
+      <h2>Add an Author</h2>
       
       <form action="./" method="POST">
         <label>
           <p>Name <span class="required">*</span></p>
           <input
             type="text"
-            name="<%= type %>-name"
-            placeholder="<%= type === 'author' ? 'Author' : 'Genre' %> Name"
+            name="author-name"
+            placeholder="Author Name"
             required
             pattern=".*\S+.*"
             title="This field is required"
           />
         </label>
         <label>
-          <p><%= type === 'author' ? 'Bio' : 'Description' %></p>
+          <p>Description</p>
           <textarea
-            name="<%= type %>-<%= type === 'author' ? 'bio' : 'description' %>"
-            placeholder="<%= type === 'author' ? 'Author Bio' : 'Genre Description' %>"
+            name="author-bio"
+            placeholder="Author Bio"
           ></textarea>
         </label>
         
@@ -46,7 +46,7 @@
 
         <div>
           <a class="a-button" href="./">Cancel</a>
-          <button type="submit">Create <%= type === 'author' ? 'Author' : 'Genre' %></button>
+          <button type="submit">Create Author</button>
         </div>
       </form>
     </main>

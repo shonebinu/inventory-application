@@ -14,31 +14,31 @@
     <link rel="stylesheet" href="/view-table.css" />
   </head>
   <body>
-    <%- include('partials/nav.ejs') %>
+    <%- include('../partials/nav.ejs') %>
     <main>
       <div>
-        <h2><%= type.charAt(0).toUpperCase() + type.slice(1) %>s</h2>
-          <a class="a-button" href="/<%= type %>s/new">Add <%= type.charAt(0).toUpperCase() + type.slice(1) %></a>
+        <h2>Genres</h2>
+          <a class="a-button" href="/genres/new">Add Genre</a>
       </div>
       <table>
         <tr>
           <th>NAME</th>
-          <th><%= type === 'author' ? 'BIO' : 'DESCRIPTION' %></th>
+          <th>DESCRIPTION</th>
           <th>BOOKS</th>
-          <th>ACTIONS</th>
+          <th></th>
         </tr>
         <% if (items && items.length > 0) { %>
-          <% items.forEach(({ id, name, bio, description, book_count }) => { %>
+          <% items.forEach(({ id, name, description, book_count }) => { %>
             <tr>
               <td><%= name %></td>
-              <td><%= type === 'author' ? bio : description %></td>
+              <td><%= description %></td>
               <td><%= book_count %></td>
-              <td><a class="a-button" href="/<%= type %>s/<%= id %>">View</a></td>
+              <td><a class="a-button" href="/genres/<%= id %>">View</a></td>
             </tr>
           <% }) %>
         <% } else { %>
           <tr>
-            <td colspan="4">No <%= type %> exists. Create a new one by clicking on the Add <%= type.charAt(0).toUpperCase() + type.slice(1) %> button.</td>
+            <td colspan="4">No Genre exists. Create a new one by clicking on the Add Genre button.</td>
           </tr>
         <% } %>
       </table>

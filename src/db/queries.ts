@@ -7,6 +7,25 @@ async function createGenre(genreName: string, genreDescription: string) {
   ]);
 }
 
+async function updateGenre(
+  genreId: number,
+  newGenreName: string,
+  newGenreDescription: string,
+) {
+  await pool.query(
+    "UPDATE genre SET name = $1, description = $2 WHERE id = $3",
+    [newGenreName, newGenreDescription, genreId],
+  );
+}
+
+async function getGenre(genreId: number) {
+  const { rows } = await pool.query(
+    `SELECT id, name, description FROM genre WHERE id = $1`,
+    [genreId],
+  );
+  return rows[0];
+}
+
 async function getGenres() {
   const { rows } = await pool.query(
     `SELECT 
@@ -69,10 +88,12 @@ async function deleteGenre(genreId: number) {
 }
 
 export default {
+  getGenre,
   getGenres,
   createGenre,
   getAuthors,
   createAuthor,
   getGenreDetails,
+  updateGenre,
   deleteGenre,
 };

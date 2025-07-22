@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/get-details.css" />
   </head>
   <body>
-    <%- include('partials/nav.ejs') %>
+    <%- include('../partials/nav.ejs') %>
     <main>
       <% if (!genreDetails || !genreDetails.id) { %>
         <p class="error-message">A genre with this ID doesn't exist.</p>
@@ -22,7 +22,7 @@
         <div>
           <h2><%= genreDetails.name %></h2>
           <div class="actions">
-            <a href="<%= genreDetails.id %>/edit" class="a-button">Edit</a>
+            <a href="/genres/<%= genreDetails.id %>/edit" class="a-button">Edit</a>
             <form
               action="/genres/<%= genreDetails.id %>/delete"
               method="post"

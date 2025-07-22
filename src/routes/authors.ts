@@ -3,7 +3,7 @@ import { Router } from "express";
 import {
   createAuthor,
   displayAuthors,
-  getAuthorForm,
+  getAuthorAddForm,
 } from "../controllers/authors.js";
 
 const authors = Router();
@@ -12,7 +12,7 @@ authors.get("/", displayAuthors);
 
 authors.get("/:id");
 
-authors.get("/new", getAuthorForm);
+authors.get("/new", getAuthorAddForm);
 
 authors.post("/", createAuthor);
 

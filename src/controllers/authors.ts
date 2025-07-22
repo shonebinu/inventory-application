@@ -13,11 +13,11 @@ const validateAuthorName: RequestHandler[] = [
 
 const displayAuthors: RequestHandler = asyncHandler(async (req, res) => {
   const authors = await db.getAuthors();
-  res.render("view-table-generic", { type: "author", items: authors });
+  res.render("authors/tabular-view", { items: authors });
 });
 
-const getAuthorForm: RequestHandler = (req, res) => {
-  res.render("add-form-generic", { type: "author" });
+const getAuthorAddForm: RequestHandler = (req, res) => {
+  res.render("authors/add-author-view");
 };
 
 const createAuthor: RequestHandler[] = [
@@ -41,4 +41,4 @@ const createAuthor: RequestHandler[] = [
   }),
 ];
 
-export { createAuthor, displayAuthors, getAuthorForm };
+export { createAuthor, displayAuthors, getAuthorAddForm };
