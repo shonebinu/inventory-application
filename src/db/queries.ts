@@ -18,10 +18,30 @@ async function updateGenre(
   );
 }
 
+async function updateAuthor(
+  authorId: number,
+  newAuthorName: string,
+  newAuthorBio: string,
+) {
+  await pool.query("UPDATE author SET name = $1, bio = $2 WHERE id = $3", [
+    newAuthorName,
+    newAuthorBio,
+    authorId,
+  ]);
+}
+
 async function getGenre(genreId: number) {
   const { rows } = await pool.query(
     `SELECT id, name, description FROM genre WHERE id = $1`,
     [genreId],
+  );
+  return rows[0];
+}
+
+async function getAuthor(authorId: number) {
+  const { rows } = await pool.query(
+    `SELECT id, name, bio FROM author WHERE id = $1`,
+    [authorId],
   );
   return rows[0];
 }
@@ -83,17 +103,39 @@ async function getGenreDetails(genreId: number) {
   };
 }
 
+async function getAuthorDetails(authorId: number) {
+  const { rows: authorRows } = await pool.query(
+    `SELECT id, name, bio FROM author WHERE id = $1`,
+    [authorId],
+  );
+
+  const { rows: bookRows } = await pool.query(
+    `SELECT id, title, isbn, publication_date, description FROM book WHERE id IN (SELECT book_id FROM book_author WHERE author_id = $1)`,
+    [authorId],
+  );
+
+  return { ...authorRows[0], books: bookRows };
+}
+
 async function deleteGenre(genreId: number) {
   await pool.query(`DELETE FROM genre WHERE id = $1`, [genreId]);
+}
+
+async function deleteAuthor(authorId: number) {
+  await pool.query(`DELETE FROM author WHERE id = $1`, [authorId]);
 }
 
 export default {
   getGenre,
   getGenres,
+  getAuthorDetails,
   createGenre,
+  deleteAuthor,
   getAuthors,
   createAuthor,
   getGenreDetails,
   updateGenre,
+  updateAuthor,
   deleteGenre,
+  getAuthor,
 };

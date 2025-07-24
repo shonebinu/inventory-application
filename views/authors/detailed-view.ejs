@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Archive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/base.css" />
+    <link rel="stylesheet" href="/get-details.css" />
+  </head>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+    <main>
+      <% if (!authorDetails|| !authorDetails.id) { %>
+        <p class="error-message">An author with this ID doesn't exist.</p>
+      <% } else { %>
+        <div>
+          <h2><%= authorDetails.name %></h2>
+          <div class="actions">
+            <a href="/authors/<%= authorDetails.id %>/edit" class="a-button">Edit</a>
+            <form
+              action="/authors/<%= authorDetails.id %>/delete"
+              method="post"
+              onsubmit="return confirm('Are you sure you want to delete this author?')"
+            >
+              <button>Delete</button>
+            </form>
+          </div>
+        </div>
+        <p class="small-p"><%= authorDetails.bio %></p>
+
+        <% if (authorDetails.books && authorDetails.books.length > 0) { %>
+          <h3>Books in <%= authorDetails.name %></h3>
+          <ul>
+            <% authorDetails.books.forEach(book => { %>
+              <li>
+                <a href="/books/<%= book.id %>"><%= book.title %></a>
+                <p><strong>ISBN:</strong> <%= book.isbn %></p>
+                <p><strong>Published:</strong> <%= book.publication_date %></p>
+                <p><%= book.description %></p>
+                <img src="<%= book.imageUrl %>" alt="<%= book.title + 'Cover Image' %>">
+              </li>
+            <% }); %>
+          </ul>
+        <% } %>
+      <% } %>
+    </main>
+  </body>
+</html>

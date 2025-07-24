@@ -18,7 +18,7 @@ genres.get("/:id(\\d+)", getGenreDetails);
 
 genres.get("/new", getGenreAddForm);
 
-genres.get("/:id/edit", getGenreEditForm);
+genres.get("/:id(\\d+)/edit", getGenreEditForm);
 
 genres.post("/", createGenre);
 
@@ -26,6 +26,6 @@ genres.post("/", createGenre);
 genres.post("/:id(\\d+)/delete", deleteGenre);
 
 // PUT
-genres.post("/:id", updateGenre);
+genres.post("/:id(\\d+)", updateGenre);
 
 export default genres;

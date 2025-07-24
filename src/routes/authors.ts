@@ -2,24 +2,30 @@ import { Router } from "express";
 
 import {
   createAuthor,
+  deleteAuthor,
   displayAuthors,
   getAuthorAddForm,
+  getAuthorDetails,
+  getAuthorEditForm,
+  updateAuthor,
 } from "../controllers/authors.js";
 
 const authors = Router();
 
 authors.get("/", displayAuthors);
 
-authors.get("/:id");
+authors.get("/:id(\\d+)", getAuthorDetails);
 
 authors.get("/new", getAuthorAddForm);
 
 authors.post("/", createAuthor);
 
-authors.get("/:id/edit");
+authors.get("/:id(\\d+)/edit", getAuthorEditForm);
 
-authors.put("/:id");
+// PUT
+authors.post("/:id(\\d+)", updateAuthor);
 
-authors.delete("/:id");
+// DELETE
+authors.post("/:id(\\d+)/delete", deleteAuthor);
 
 export default authors;
