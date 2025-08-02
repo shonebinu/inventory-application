@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Archive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/base.css" />
+    <link rel="stylesheet" href="/view-table.css" />
+  </head>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+    <main>
+      <div>
+        <h2>Books</h2>
+          <a class="a-button" href="/books/new">Add Book</a>
+      </div>
+      <table>
+        <tr>
+          <th>TITLE</th>
+          <th>DESCRIPTION</th>
+          <th>AUTHOR</th>
+          <th>GENRE</th>
+          <th></th>
+        </tr>
+        <% if (items && items.length > 0) { %>
+          <% items.forEach(({ id, title, description, author_name, genre_name }) => { %>
+            <tr>
+              <td><%= title %></td>
+              <td><%= description %></td>
+              <td><%= author_name %></td>
+              <td><%= genre_name %></td>
+              <td><a class="a-button" href="/books/<%= id %>">View</a></td>
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr>
+            <td colspan="4">No Book exists. Create a new one by clicking on the Add Book button.</td>
+          </tr>
+        <% } %>
+      </table>
+    </main>
+  </body>
+</html>

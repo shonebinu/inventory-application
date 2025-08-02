@@ -32,17 +32,15 @@
             </form>
           </div>
         </div>
-        <p class="small-p"><%= genreDetails.description %></p>
+        <span><%= genreDetails.description %></span>
 
         <% if (genreDetails.books && genreDetails.books.length > 0) { %>
           <h3>Books in <%= genreDetails.name %></h3>
           <ul>
             <% genreDetails.books.forEach(book => { %>
               <li>
-                <a href="/books/<%= book.id %>"><%= book.title %></a>
-                <p><strong>ISBN:</strong> <%= book.isbn %></p>
-                <p><strong>Published:</strong> <%= book.publication_date %></p>
-                <p><%= book.description %></p>
+                <a href="/books/<%= book.id %>"><h4><%= book.title %></h4></a>
+                <p class="small-p"><%= book.description %></p>
                 <img src="<%= book.imageUrl %>" alt="<%= book.title + 'Cover Image' %>">
               </li>
             <% }); %>

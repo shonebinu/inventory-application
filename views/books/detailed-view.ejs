@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Archive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/base.css" />
+    <link rel="stylesheet" href="/get-details.css" />
+  </head>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+    <main>
+      <% if (!bookDetails|| !bookDetails.id) { %>
+        <p class="error-message">A book with this ID doesn't exist.</p>
+      <% } else { %>
+        <div>
+          <h2><%= bookDetails.title %></h2>
+          <div class="actions">
+            <a href="/books/<%= bookDetails.id %>/edit" class="a-button">Edit</a>
+            <form
+              action="/books/<%= bookDetails.id %>/delete"
+              method="post"
+              onsubmit="return confirm('Are you sure you want to delete this book?')"
+            >
+              <button>Delete</button>
+            </form>
+          </div>
+        </div>
+        <img src="<%= bookDetails.imageUrl %>" alt="<%= bookDetails.title + 'Cover Image' %>">
+        <p><%= bookDetails.description %></p>
+        <% } %>
+    </main>
+  </body>
+</html>

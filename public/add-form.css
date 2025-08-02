@@ -30,6 +30,11 @@ main > form {
     padding: 0.25rem 0.3rem;
   }
 
+  select {
+    padding: 0.3rem 0.5rem;
+    border-radius: 3px;
+  }
+
   > div:has(> button) {
     margin-top: 1rem;
     display: flex;

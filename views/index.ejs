@@ -11,11 +11,29 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/base.css" />
+    <link rel="stylesheet" href="/home.css" />
   </head>
   <body>
     <%- include('partials/nav.ejs') %>
     <main>
-      <h2>Book Archive</h2>
+      <h2>📚 Book Archive</h2>
+      <section class="count-grid">
+        <div class="count-card">
+          <p>Books</p>
+          <p class="count-num"><%= count.book_count %></p>
+          <a href="/books/add" class="a-button">+ Add Book</a>
+        </div>
+        <div class="count-card">
+          <p>Authors</p>
+          <p class="count-num"><%= count.author_count %></p>
+          <a href="/authors/add" class="a-button">+ Add Author</a>
+        </div>
+        <div class="count-card">
+          <p>Genres</p>
+          <p class="count-num"><%= count.genre_count %></p>
+          <a href="/genres/add" class="a-button">+ Add Genre</a>
+        </div>
+      </section>
     </main>
   </body>
 </html>

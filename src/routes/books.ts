@@ -1,19 +1,31 @@
 import { Router } from "express";
 
+import {
+  createBook,
+  deleteBook,
+  displayBooks,
+  getBookAddForm,
+  getBookDetails,
+  getBookEditForm,
+  updateBook,
+} from "../controllers/books.js";
+
 const books = Router();
 
-books.get("/");
+books.get("/", displayBooks);
 
-books.get("/:id");
+books.get("/new", getBookAddForm);
 
-books.get("/new");
+books.get("/:id(\\d+)", getBookDetails);
 
-books.post("/");
+books.post("/", createBook);
 
-books.get("/:id/edit");
+books.get("/:id(\\d+)/edit", getBookEditForm);
 
-books.put("/:id");
+// PUT
+books.post("/:id(\\d+)", updateBook);
 
-books.delete("/:id");
+// DELETE
+books.post("/:id(\\d+)/delete", deleteBook);
 
 export default books;

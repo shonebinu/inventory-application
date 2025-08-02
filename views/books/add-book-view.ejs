@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Archive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/base.css" />
+    <link rel="stylesheet" href="/add-form.css" />
+  </head>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+    <main>
+      <h2>Add a Book</h2>
+      
+      <form action="./" method="POST">
+        <label>
+          <p>Title<span class="required">*</span></p>
+          <input
+            type="text"
+            name="book-title"
+            placeholder="Book Title"
+            required
+            pattern=".*\S+.*"
+            title="This field is required"
+          />
+        </label>
+        <label>
+          <p>Author</p>
+          <select name="book-author">
+            <option disabled selected>Select Author</option>
+            <% authors.forEach(author => { %>
+              <option value="<%= author.id %>"><%= author.name %></option>
+            <% }) %>
+          </select>
+        </label>
+        <label>
+          <p>Genre</p>
+          <select name="book-genre">
+            <option disabled selected>Select Genre</option>
+            <% genres.forEach(genre => { %>
+              <option value="<%= genre.id %>"><%= genre.name %></option>
+            <% }) %>
+          </select>
+        </label>
+        <label>
+          <p>Description</p>
+          <textarea
+            name="book-description"
+            placeholder="Book Description"
+          ></textarea>
+        </label>
+        
+        <% if (errors && errors.length > 0) { %>
+          <% errors.forEach(error => { %>
+            <p class="error"><%= error %></p>
+          <% }) %>
+        <% } %>
+
+        <div>
+          <a class="a-button" href="./">Cancel</a>
+          <button type="submit">Create Book</button>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>

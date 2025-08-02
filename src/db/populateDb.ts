@@ -1,3 +1,4 @@
+import "dotenv/config";
 import pg from "pg";
 
 const { Client } = pg;
@@ -6,8 +7,6 @@ const SQL = `
 CREATE TABLE IF NOT EXISTS book (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   title VARCHAR(255) NOT NULL,
-  isbn VARCHAR(20) UNIQUE,
-  publication_date DATE,
   description TEXT
 );
 
@@ -36,10 +35,12 @@ CREATE TABLE IF NOT EXISTS book_genre (
 );
 `;
 
-const connectionString = process.argv[2];
+const connectionString = process.env.DB_URL || process.argv[2];
 
 if (!connectionString) {
-  console.error("Error: Please provide a connection URL as an argument.");
+  console.error(
+    "Error: Please provide a connection URL as an argument or configure .env file.",
+  );
   console.log(
     "Connection URL example: postgresql://<role_name>:<role_password>@<db_host>:5432/<db_name>",
   );

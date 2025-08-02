@@ -1,0 +1,29 @@
+.count-grid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.count-card {
+  border: 2px solid var(--bg);
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  text-align: center;
+  width: 200px;
+}
+
+.count-card p {
+  margin: 0.5rem 0;
+}
+
+.count-num {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--nav-bg);
+}
+
+.a-button {
+  margin-top: 0.75rem;
+}
