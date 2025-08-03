@@ -37,14 +37,12 @@ app.use("/genres", genresRouter);
 app.use("/", indexRouter);
 
 app.use((req, res) => {
-  //TODO: Setup 404 page
-  res.status(404).json({ url: req.originalUrl });
+  res.status(404).render("404", { url: req.originalUrl });
 });
 
 const errorRequestHandler: ErrorRequestHandler = (err, req, res, next) => {
-  //TODO: Implement error page
-  res.status(err.status || 500).json({
-    message: err.message,
+  res.status(err.status || 500).render("error", {
+    message: err.message || "Internal Server Error",
   });
 };
 
@@ -53,5 +51,5 @@ app.use(errorRequestHandler);
 const PORT = process.env.PORT ?? 3000;
 
 app.listen(PORT, () => {
-  console.log(`Mini Message Board - listening on port ${PORT}`);
+  console.log(`Inventory App - listening on port ${PORT}`);
 });
