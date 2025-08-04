@@ -9,7 +9,7 @@
     "start": "node dist/app.js",
     "pretty": "prettier --write . --ignore-path .gitignore",
     "populate-db": "tsx src/db/populateDb.ts",
-    "clean": "rm - rf dist",
+    "clean": "rm -rf dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
